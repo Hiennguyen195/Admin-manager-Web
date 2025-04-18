@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Đăng ký</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <div class="signup-container">
+      <form id="signup-form" class="signup-form">
+        <h2>Đăng ký</h2>
+
+        <label for="userName">Tên đăng nhập:</label>
+        <input type="text" id="userName" required />
+
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" required />
+
+        <label for="firstName">Họ:</label>
+        <input type="text" id="firstName" required />
+
+        <label for="lastName">Tên:</label>
+        <input type="text" id="lastName" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required />
+
+        <label for="birthDate">Ngày sinh:</label>
+        <input type="date" id="birthDate" required />
+
+        <label for="role">Chọn vai trò:</label>
+        <select id="role" name="role" required>
+          <option value="">-- Chọn vai trò --</option>
+          <option value="USER">Người dùng</option>
+          <option value="ADMIN">Quản trị viên</option>
+          <option value="MOD">Điều hành</option>
+        </select>
+
+        <div class="button-row">
+          <button type="submit" class="btn">Đăng ký</button>
+          <button
+            type="button"
+            class="btn"
+            onclick="window.location.href='./login.html'"
+          >
+            Quay lại đăng nhập
+          </button>
+        </div>
+
+        <div class="error" id="error-msg"></div>
+      </form>
+    </div>
+
+    <script src="../js/signup.js"></script>
+  </body>
+</html>

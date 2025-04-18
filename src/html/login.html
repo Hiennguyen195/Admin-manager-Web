@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <form id="login-form" class="login-form">
+        <h2>Đăng nhập</h2>
+
+        <label for="userName">Tên đăng nhập:</label>
+        <input type="text" id="userName" required />
+
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" required />
+
+        <div class="button-row">
+          <button type="submit" class="btn">Đăng nhập</button>
+          <button
+            type="button"
+            class="btn"
+            onclick="window.location.href='./signup.html'"
+          >
+            Đăng ký
+          </button>
+        </div>
+
+        <section class="forgot-password">
+          <a href="./get-new-password.html">Quên mật khẩu</a>
+        </section>
+
+        <div class="error" id="error-msg"></div>
+      </form>
+    </div>
+
+    <script src="../js/login.js"></script>
+  </body>
+</html>
