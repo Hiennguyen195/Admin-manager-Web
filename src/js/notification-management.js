@@ -6,17 +6,17 @@ function fetchNotifications() {
       Authorization: `Bearer ${token}`,
     },
   })
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       const unreadList = document.getElementById("unread-list");
       const readList = document.getElementById("read-list");
       const badge = document.getElementById("noti-badge-count");
 
       unreadList.innerHTML = "";
       readList.innerHTML = "";
-
-      const unread = data.filter(n => !n.read);
-      const read = data.filter(n => n.read);
+      
+      const unread = data.filter((n) => !n.read);
+      const read = data.filter((n) => n.read);
 
       // Badge
       badge.textContent = unread.length;
@@ -24,25 +24,28 @@ function fetchNotifications() {
 
       // Unread section
       if (unread.length === 0) {
-        unreadList.innerHTML = "<li style='color: gray;'>Không có thông báo.</li>";
+        unreadList.innerHTML =
+          "<li style='color: gray;'>Không có thông báo.</li>";
       } else {
-        unread.forEach(noti => {
+        unread.forEach((noti) => {
           const li = createNotificationItem(noti, false); // chưa đọc
-          unreadList.appendChild(li);
+          unreadList.prepend(li);
         });
       }
 
       // Read section
       if (read.length === 0) {
-        readList.innerHTML = "<li style='color: gray;'>Không có thông báo.</li>";
+        readList.innerHTML =
+          "<li style='color: gray;'>Không có thông báo.</li>";
       } else {
-        read.forEach(noti => {
+        read.forEach((noti) => {
           const li = createNotificationItem(noti, true); // đã đọc
-          readList.appendChild(li);
+          readList.prepend(li);
         });
       }
     });
 }
+
 
 function createNotificationItem(noti, isRead) {
   const li = document.createElement("li");
@@ -98,15 +101,13 @@ function markAsRead(id, liElement) {
     const badge = document.getElementById("noti-badge-count");
     let current = parseInt(badge.textContent);
     badge.textContent = current > 0 ? current - 1 : 0;
-    badge.style.display = parseInt(badge.textContent) > 0 ? "inline-block" : "none";
+    badge.style.display =
+      parseInt(badge.textContent) > 0 ? "inline-block" : "none";
   });
 }
 
 function deleteNotification(id) {
-
-  const confirmDelete = confirm(
-    "Bạn có chắc chắn muốn xóa thông báo này?"
-  );
+  const confirmDelete = confirm("Bạn có chắc chắn muốn xóa thông báo này?");
   if (!confirmDelete) return;
 
   const token = localStorage.getItem("token");
@@ -115,8 +116,7 @@ function deleteNotification(id) {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-  })
-  .then(res => {
+  }).then((res) => {
     if (res.ok) {
       alert("Xóa thành công");
       fetchNotifications();
@@ -127,23 +127,23 @@ function deleteNotification(id) {
 function markAllAsRead() {
   const token = localStorage.getItem("token");
   fetch("http://localhost:8080/api/notifications/read-all", {
-    method: "PUT", 
+    method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
     },
   })
-    .then(res => {
+    .then((res) => {
       if (res.ok) {
         fetchNotifications(); // Chờ đánh dấu xong rồi mới reload
       } else {
         console.error("Không thể đánh dấu tất cả là đã đọc");
       }
     })
-    .catch(error => console.error("Lỗi:", error));
+    .catch((error) => console.error("Lỗi:", error));
 }
 
 function goToDashboard() {
-  document.querySelectorAll("section").forEach(section => {
+  document.querySelectorAll("section").forEach((section) => {
     section.style.display = "none";
   });
   document.getElementById("dashboard").style.display = "block";

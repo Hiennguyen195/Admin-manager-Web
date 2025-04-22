@@ -103,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
       btn.addEventListener("click", () => {
         if (confirm("Bạn có chắc muốn xóa người dùng này?")) {
           const token = localStorage.getItem("token");
+          console.log(btn.dataset.id)
           fetch(`http://localhost:8080/api/users/${btn.dataset.id}`, {
             method: "DELETE",
             headers: {
@@ -259,4 +260,5 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchUsers(currentPage, currentSize);
   });
   
+  // Function find user by username or email
 });
