@@ -19,7 +19,7 @@ form.addEventListener("submit", function (e) {
     .then(data => {
       //console.log("Token nhận được từ backend:", data.result.token);//
       localStorage.setItem("token", data.result.token); // lưu JWT
-      window.location.href = "../html/admin.html"; // chuyển trang
+      window.location.href = "./admin.html"; // chuyển trang
     })
     .catch(err => {
       errorMsg.textContent = err.message;

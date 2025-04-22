@@ -21,8 +21,11 @@ i {
 }
 
 .sidebar h2 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-align: center;
+  border-bottom: solid white;
+  border-bottom-width: 2px;
+  padding-bottom: 5px;
 }
 
 .sidebar ul {
@@ -157,20 +160,6 @@ select {
   background-color: rgb(0, 90, 0);
 }
 
-#product-table {
-  table-layout: fixed;
-  width: 100%;
-  border-collapse: collapse;
-}
-
-#product-table th,
-#product-table td {
-  padding: 8px;
-  text-align: left;
-  border: 1px solid #ddd;
-  word-wrap: break-word;
-}
-
 .tab-header {
   padding-bottom: 10px;
   border-bottom: 2px solid black;
@@ -197,4 +186,102 @@ select {
 
 #products table tr:hover {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.top-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.top-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #2c3e50;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.top-icons a:hover {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.icon-with-badge {
+  position: relative;
+}
+
+.icon-with-badge i {
+  font-size: 18px;
+}
+
+.badge {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+#noti-list {
+  list-style: none;
+  padding: 0;
+}
+
+#noti-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+#noti-list li:hover {
+  background-color: #f9f9f9;
+}
+
+.badge {
+  background-color: red;
+  color: white;
+  padding: 3px 7px;
+  border-radius: 50%;
+  font-size: 12px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  display: none;
+}
+
+.notification-item {
+  transition: font-weight 0.3s ease;
+}
+
+.notification-item {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  transition: font-weight 0.3s ease;
+}
+
+#unread-list li,
+#read-list li {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+#unread-list li:last-child,
+#read-list li:last-child {
+  border-bottom: none;
+}
+
+.mark-all-read {
+  background-color: green;
+}
+
+.mark-all-read:hover {
+  background-color: rgb(0, 100, 0);
 }

@@ -35,14 +35,18 @@ document.addEventListener("DOMContentLoaded", function () {
         products.forEach((p) => {
           const row = document.createElement("tr");
           row.innerHTML = `
+              <td class="table-shadow-hover">${p.id}</td>
               <td class="table-shadow-hover">${p.productName}</td>
               <td class="table-shadow-hover">${p.price.toLocaleString()}</td>
               <td class="table-shadow-hover">${p.stock}</td>
               <td>
-                <button class="edit-btn" data-id="${p.id}" data-price="${
-            p.price
-          }" data-stock="${p.stock}">
-                  <i class="fa-solid fa-plus-minus"></i> Sửa
+                <button 
+                  class="edit-btn" 
+                  data-id="${p.id}" 
+                  data-price="${p.price}" 
+                  data-stock="${p.stock}"
+                >
+                <i class="fa-solid fa-pen-to-square"></i> Cập nhập
                 </button>
                 <button class="delete-btn" data-id="${
                   p.id
@@ -109,7 +113,8 @@ document.addEventListener("DOMContentLoaded", function () {
     paginationContainer.innerHTML = "";
 
     const prev = document.createElement("button");
-    prev.textContent = "Trang trước";
+    prev.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+    // prev.textContent = "Trang trước";
     prev.disabled = currentPage === 0;
     prev.addEventListener("click", () =>
       fetchProducts(currentPage - 1, currentSize)
@@ -120,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const btn = document.createElement("button");
       btn.textContent = i + 1;
       if (i === currentPage) {
-        btn.style.backgroundColor = "#3498db";
+        btn.style.backgroundColor = "#F16767";
         btn.style.color = "#fff";
       }
       btn.addEventListener("click", () => fetchProducts(i, currentSize));
@@ -128,7 +133,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const next = document.createElement("button");
-    next.textContent = "Trang sau";
+    next.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+    // next.textContent = "Trang sau";
     next.disabled = currentPage === totalPages - 1;
     next.addEventListener("click", () =>
       fetchProducts(currentPage + 1, currentSize)
@@ -203,6 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch((err) => {
         alert("Lỗi: " + err.message);
       });
+      
   });
 
   const editModal = document.getElementById("edit-product-modal");
@@ -246,4 +253,6 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Lỗi: " + err.message);
       });
   });
+
+  
 });
