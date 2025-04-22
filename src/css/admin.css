@@ -280,6 +280,7 @@ select {
 
 .mark-all-read {
   background-color: green;
+  margin-top: 5px;
 }
 
 .mark-all-read:hover {
@@ -302,4 +303,48 @@ select {
 }
 .notification-list::-webkit-scrollbar-thumb:hover {
   background-color: #555;
+}
+
+.notification-section {
+  background: whitesmoke;
+  padding: 10px 15px;
+  border-radius: 10px; /* Giữ lại border-radius nhẹ */
+  margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.notification-section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transform: translateY(-2px);
+}
+
+.notification-section h2 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333; /* Ví dụ màu chữ đen đậm */
+}
+
+.notification-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: inset 2px 0px 0px 0px green;
+}
+
+.notification-list li {
+  padding: 8px 12px;
+  margin-bottom: 0px;
+  border-bottom: 1px solid rgb(252, 252, 252); /* Đường kẻ phân tách */
+  transition: background-color 0.3s ease;
+}
+
+.notification-list li:last-child {
+  border-bottom: none; /* Loại bỏ đường kẻ ở mục cuối cùng */
+}
+
+.notification-list li:hover {
+  background-color: #f9f9f9; /* Màu nền nhạt khi hover */
+  box-shadow: inset 2px 0px 0px 0px rgba(255, 94, 0, 0.863);
 }
