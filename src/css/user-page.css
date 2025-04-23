@@ -210,3 +210,8 @@
 .close-edit-btn:hover {
   color: #e74c3c;
 }
+
+#search-user::placeholder {
+  text-align: left;
+  font-style: italic;
+}

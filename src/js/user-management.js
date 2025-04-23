@@ -18,21 +18,33 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentPage = 0;
   let currentSize = parseInt(pageSizeSelect.value);
   let currentRole = "";
+  let currentKeyword = "";
+  let searchTimeout = null;
 
-  function fetchUsers(page = 0, size = 10, role = "") {
-    currentPage = page;
-    currentSize = size;
-    currentRole = role;
+  const searchInput = document.getElementById("search-user-input");
+  searchInput.addEventListener("input", () => {
+    currentKeyword = searchInput.value.trim();
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      fetchUsers(0, currentSize, currentRole, currentKeyword);
+    }, 300);
+  });
 
+  function fetchUsers(page = 0, size = 10, role = "", keyword = "") {
     const token = localStorage.getItem("token");
-    let url = `http://localhost:8080/api/users`;
-
-    if (role) {
+    let url = "";
+  
+    if (keyword) {
+      url = `http://localhost:8080/api/users/search?username=${keyword}&email=${keyword}&page=${page}&size=${size}`;
+      if (role) {
+        url += `&role=${role}`; // ← thêm role vào nếu có
+      }
+    } else if (role) {
       url = `http://localhost:8080/api/users/role?role=${role}&page=${page}&size=${size}`;
     } else {
-      url += `?page=${page}&size=${size}`;
+      url = `http://localhost:8080/api/users?page=${page}&size=${size}`;
     }
-
+  
     fetch(url, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -49,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch((err) => alert("Lỗi: " + err.message));
   }
 
-  function renderUsers(users) {
+  function renderUsers(users) {  
     tbody.innerHTML = "";
 
     users.forEach((u) => {
@@ -128,15 +140,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function renderUserPagination(totalPages, currentPage) {
     paginationContainer.innerHTML = "";
-
+  
     const prev = document.createElement("button");
     prev.textContent = "Trang trước";
     prev.disabled = currentPage === 0;
-    prev.addEventListener("click", () =>
-      fetchUsers(currentPage - 1, currentSize, currentRole)
-    );
+    prev.addEventListener("click", () => fetchUsers(currentPage - 1, currentSize, currentRole, currentKeyword));
     paginationContainer.appendChild(prev);
-
+  
     for (let i = 0; i < totalPages; i++) {
       const btn = document.createElement("button");
       btn.textContent = i + 1;
@@ -144,16 +154,14 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.style.backgroundColor = "#F16767";
         btn.style.color = "#fff";
       }
-      btn.addEventListener("click", () => fetchUsers(i, currentSize, currentRole));
+      btn.addEventListener("click", () => fetchUsers(i, currentSize, currentRole, currentKeyword)); // thêm role & keyword
       paginationContainer.appendChild(btn);
     }
-
+  
     const next = document.createElement("button");
     next.textContent = "Trang sau";
     next.disabled = currentPage === totalPages - 1;
-    next.addEventListener("click", () =>
-      fetchUsers(currentPage + 1, currentSize, currentRole)
-    );
+    next.addEventListener("click", () => fetchUsers(currentPage + 1, currentSize, currentRole, currentKeyword));
     paginationContainer.appendChild(next);
   }
 
@@ -243,22 +251,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Filter role
   roleFilter.addEventListener("change", () => {
-    const selectedRole = roleFilter.value;
-    fetchUsers(0, currentSize, selectedRole); 
+    currentRole = roleFilter.value; // ← cập nhật biến toàn cục
+    fetchUsers(0, currentSize, currentRole, currentKeyword);
   });
 
   // Khi thay đổi số user/trang
   pageSizeSelect.addEventListener("change", () => {
     currentSize = parseInt(pageSizeSelect.value);
-    fetchUsers(0, currentSize, currentRole);
+    fetchUsers(0, currentSize, currentRole, currentKeyword);
   });
 
   // Khi nhấn vào tab users
   userLink.addEventListener("click", () => {
     currentPage = 0;
     currentSize = parseInt(pageSizeSelect.value);
-    fetchUsers(currentPage, currentSize);
+    fetchUsers(currentPage, currentSize, currentRole, currentKeyword); // thêm currentRole & currentKeyword
   });
   
-  // Function find user by username or email
+  // // Function find user by username or email
+  // document.getElementById("search-user-input").addEventListener("keypress", (e) => {
+  //   if (e.key === "Enter") {
+  //     fetchUsers(0, currentSize);
+  //   }
+  // });
 });
