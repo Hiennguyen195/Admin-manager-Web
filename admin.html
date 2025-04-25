@@ -275,10 +275,11 @@
             <button class="shadow-hover focus-style" id="add-product-btn">
               <i class="fa-solid fa-plus"></i>Thêm sản phẩm mới
             </button>
-            <select name="product-category" id="product-category">
-              <option value="ctg1">Đồ Uống</option>
-              <option value="ctg2">Thực Phẩm</option>
-              <option value="ctg3">Gia vị</option>
+            <select name="product-category" id="filter-category">
+              <option value="">Tất cả danh mục</option>
+              <option value="1">Đồ uống</option>
+              <option value="2">Thực phẩm</option>
+              <option value="3">Bánh kẹo</option>
             </select>
           </div>
 
@@ -287,6 +288,7 @@
               <tr>
                 <th>ID sản phẩm</th>
                 <th>Tên sản phẩm</th>
+                <th>Danh mục</th>
                 <th>Giá ($)</th>
                 <th>Tồn kho</th>
                 <th>Hành động</th>
@@ -297,7 +299,7 @@
 
           <div style="margin: 20px 0; text-align: left">
             <label for="page-size">Sản phẩm/trang:</label>
-            <select id="page-size">
+            <select id="product-page-size">
               <option value="5">5</option>
               <option value="10" selected>10</option>
               <option value="20">20</option>
@@ -306,7 +308,7 @@
 
           <!-- Pagination -->
           <div
-            id="pagination"
+            id="product-pagination"
             style="margin-top: 10px; text-align: center"
           ></div>
         </section>

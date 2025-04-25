@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
   const pageSizeSelect = document.getElementById("user-page-size");
   const roleFilter = document.getElementById("filter-role");
