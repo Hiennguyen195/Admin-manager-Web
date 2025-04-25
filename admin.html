@@ -272,9 +272,11 @@
           </div>
 
           <div id="product-header">
+            <!-- Add new product -->
             <button class="shadow-hover focus-style" id="add-product-btn">
               <i class="fa-solid fa-plus"></i>Thêm sản phẩm mới
             </button>
+            <!-- Filter category -->
             <select name="product-category" id="filter-category">
               <option value="">Tất cả danh mục</option>
               <option value="1">Đồ uống</option>
@@ -282,6 +284,14 @@
               <option value="3">Bánh kẹo</option>
             </select>
           </div>
+          <!-- Search product input box -->
+          <input
+            class="search-product-box"
+            type="text"
+            title="Tìm kiếm theo tên sản phẩm hoặc tồn kho"
+            id="search-product-input"
+            placeholder="Tìm kiếm: productName, stock"
+          />
 
           <table id="product-table">
             <thead>

@@ -20,15 +20,15 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentKeyword = "";
   let searchTimeout = null;
 
-  // Xử lý tìm kiếm sản phẩm (làm sau)
-  // const searchInput = document.getElementById("search-product-input");
-  // searchInput.addEventListener("input", () => {
-  //   currentKeyword = searchInput.value.trim();
-  //   clearTimeout(searchTimeout);
-  //   searchTimeout = setTimeout(() => {
-  //     fetchProducts(0, currentSize, currentCategory, currentKeyword);
-  //   }, 300);
-  // });
+  //Xử lý tìm kiếm sản phẩm (làm sau)
+  const searchInput = document.getElementById("search-product-input");
+  searchInput.addEventListener("input", () => {
+    currentKeyword = searchInput.value.trim();
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      fetchProducts(0, currentSize, currentCategory, currentKeyword);
+    }, 300);
+  });
 
   function fetchProducts(page = 0, size = 10, category = "", keyword = "") {
     const token = localStorage.getItem("token");
@@ -93,9 +93,9 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".edit-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         editModal.classList.remove("hidden");
-        form.elements["id"].value = btn.dataset.id;
-        form.elements["price"].value = btn.dataset.price;
-        form.elements["stock"].value = btn.dataset.stock;
+        editForm.elements["id"].value = btn.dataset.id;
+        editForm.elements["price"].value = btn.dataset.price;
+        editForm.elements["stock"].value = btn.dataset.stock;
       });
     });
 
@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       btn.addEventListener("click", () =>
         fetchProducts(i, currentSize, currentCategory, currentKeyword)
-      ); // thêm category & keyword
+      ); // Thêm category & keyword
       paginationContainer.appendChild(btn);
     }
 
