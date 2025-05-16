@@ -264,7 +264,12 @@
                 <input type="number" name="stock" required />
 
                 <label>Danh mục:</label>
-                <input type="number" name="categoryId" required />
+                <select name="categoryId" required>
+                  <option value="1">Đồ uống</option>
+                  <option value="2">Thực phẩm</option>
+                  <option value="3">Bánh kẹo</option>
+                </select>
+                <!-- <input type="number" name="categoryId" required /> -->
 
                 <button type="submit">Thêm</button>
               </form>
@@ -328,6 +333,52 @@
           <h1 class="tab-header">
             <i class="fas fa-truck"></i> Quản lý đơn hàng
           </h1>
+
+          <div class="order-controls">
+            <input
+              class="search-order-box"
+              type="text"
+              title="Tìm kiếm theo tên người dùng hoặc email"
+              id="search-order-input"
+              placeholder="Tìm kiếm: userName, email"
+            />
+
+            <select id="filter-status">
+              <option value="">Tất cả trạng thái</option>
+              <option value="PENDING">Pending</option>
+              <option value="SHIPPED">Shipped</option>
+              <option value="DELIVERED">Delivered</option>
+              <option value="CANCELED">Canceled</option>
+            </select>
+          </div>
+          <table class="order-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Username</th>
+                <th>Order Date</th>
+                <th>Status</th>
+                <th>Total Price</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="order-table-body"></tbody>
+          </table>
+
+          <div style="margin: 20px 0; text-align: left">
+            <label for="order-page-size">Số đơn hàng/trang:</label>
+            <select id="order-page-size">
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+
+          <div
+            id="order-pagination"
+            class="pagination"
+            style="margin-top: 10px; text-align: center"
+          ></div>
         </section>
 
         <!-- Users Management -->

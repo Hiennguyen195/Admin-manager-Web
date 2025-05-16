@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(() => {
               alert("Xóa sản phẩm thành công!");
-              fetchUsers(currentPage, currentSize); // load lại trang hiện tại
+              fetchProducts(currentPage, currentSize); // load lại trang hiện tại
             })
             .catch((err) => {
               alert("Lỗi: " + err.message);
